@@ -1,0 +1,39 @@
+import re
+
+class Account:
+    def __init__(self, acc_no, balance):
+        self.acc_no = acc_no
+        self.__balance = balance   # Encapsulation
+
+    def get_balance(self):
+        return self.__balance
+
+class SavingsAccount(Account):
+    def withdraw(self, amount):
+        if amount <= self.get_balance():
+            print("Withdrawal Successful")
+        else:
+            print("Insufficient Balance")
+
+class CurrentAccount(Account):
+    def withdraw(self, amount):
+        if amount <= self.get_balance() + 1000:
+            print("Withdrawal Successful")
+        else:
+            print("Limit Exceeded")
+
+acc_no = input("Enter Account Number: ")
+
+if re.match(r"^ACC\d{4}$", acc_no):
+    balance = int(input("Enter Balance: "))
+    amount = int(input("Enter Withdrawal Amount: "))
+    acc_type = input("Savings or Current: ")
+
+    if acc_type.lower() == "savings":
+        acc = SavingsAccount(acc_no, balance)
+    else:
+        acc = CurrentAccount(acc_no, balance)
+
+    acc.withdraw(amount)
+else:
+    print("Invalid Account Number")
