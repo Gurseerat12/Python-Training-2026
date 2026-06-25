@@ -1,0 +1,34 @@
+import csv
+
+def grade(mark):
+    if mark >= 90:
+        return "A"
+    elif mark >= 75:
+        return "B"
+    elif mark >= 50:
+        return "C"
+    else:
+        return "F"
+
+
+with open("students.csv", "r") as file:
+    data = csv.reader(file)
+    next(data)  # Skip header
+
+    results = []
+
+    for row in data:
+        name = row[0]
+        marks = int(row[1])
+        results.append([name, marks, grade(marks)])
+
+
+with open("results.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+
+    writer.writerow(["Name", "Marks", "Grade"])
+
+    for row in results:
+        writer.writerow(row)
+
+print("Results saved to results.csv")
