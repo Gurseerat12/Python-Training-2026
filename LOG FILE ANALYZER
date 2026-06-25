@@ -1,0 +1,27 @@
+import re
+
+
+def read_log(file):
+    with open(file, "r") as f:
+        for line in f:
+            yield line
+
+error_count = 0
+
+for line in read_log("log.txt"):
+    ip = re.findall(r"\d+\.\d+\.\d+\.\d+", line)
+    time = re.findall(r"\d{2}:\d{2}:\d{2}", line)
+    error = re.findall(r"ERROR\d+", line)
+
+    if error:
+        error_count += 1
+        print("IP:", ip[0])
+        print("Time:", time[0])
+        print("Error Code:", error[0])
+        print()
+
+
+with open("report.txt", "w") as f:
+    f.write("Total Errors: " + str(error_count))
+
+print("Report saved to report.txt")
