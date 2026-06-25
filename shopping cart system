@@ -1,0 +1,22 @@
+
+cart = []
+prices = {"pen": 10, "Book": 50, "Pencil": 5}
+categories = {"Pen": "Stationery", "Book": "Education", "Pencil": "Stationery"}
+
+
+cart.append("Pen")
+cart.append("Book")
+
+
+cart.remove("Pen")
+
+total = 0
+unique_categories = set()
+
+for item in cart:
+    total += prices[item]
+    unique_categories.add(categories[item])
+
+print("Cart Items:", cart)
+print("Categories:", unique_categories)
+print("Total Bill:", total)
