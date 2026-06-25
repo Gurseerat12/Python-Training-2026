@@ -1,0 +1,41 @@
+#vehicle rental sytem
+#bike 250km/day=2000
+#car 250 km/day=5000
+#bus 250km/day=7500
+class Vehicle:
+    def __init__(self,name, km):
+        self.name = name
+        self.km = km
+
+
+class Bike(Vehicle):
+    def calculate_rent(self):
+        rent = 2000    # rent for 250 km/day
+        if self.km > 250:
+            rent += (self.km - 250) *20
+        return rent
+
+
+class Car(Vehicle):
+    def calculate_rent(self):
+        rent = 5000    # rent for 250 km/day
+        if self.km > 250:
+            rent += (self.km - 250) * 50
+        return rent
+
+
+class Bus(Vehicle):
+    def calculate_rent(self):
+        rent = 7500     # rent for 250 km/day
+        if self.km > 250:
+            rent += (self.km - 250) * 70
+        return rent
+
+
+bike = Bike("Honda", 250)
+car = Car ("Swift", 250)
+bus = Bus("Volvo", 250)
+
+print("Bike Rent:", bike.calculate_rent())
+print("Car Rent:", car.calculate_rent())
+print("Bus Rent:", bus.calculate_rent())
